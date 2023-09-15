@@ -1,0 +1,203 @@
+{% extends 'mostruario/layout.html' %}
+{% load static %}
+
+{% block title %}Crejo Representações{% endblock %}
+
+{% block head %}
+    <script src="{% static 'mostruario/mostruariotable.js' %}" defer data-username="{{ user.username }}"></script>
+{% endblock %}
+
+{% block body %}
+    <!-- Grid View -->
+    <div id="table-input" class="'grid h-screen mt-[-90px] hidden">
+        <div class="flex flex-col h-full items-center justify-center">
+            <h1 class="mb-2 mt-0 text-4xl font-medium leading-tight text-bg-crejo">Tabela de Preço</h1>
+            <hr class="w-[40px] mb-10 border-[1px] border-neutral-200 dark:border-neutral-700">
+            <!-- File Input -->
+            <form id="send-prices">
+                {% csrf_token %}
+                <div class="flex gap-3">
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input
+                        type="text"
+                        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        id="exampleFormControlInput1"
+                        placeholder="Example label" name="description"/>
+                        <label
+                        for="exampleFormControlInput1"
+                        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                        Descrição
+                        </label>
+                    </div>
+                    <div class="relative mb-3" data-te-input-wrapper-init>
+                        <input
+                        type="number"
+                        class="peer block min-h-[auto] w-[120px] rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        id="exampleFormControlInput1"
+                        placeholder="Example label" 
+                        step="0.5" max="100" name="discount"/>
+                        <label
+                        for="exampleFormControlInput1"
+                        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                        >Desconto (%)
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label
+                    for="formFileLg"
+                    class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+                    >Carregue a tabela de preço</label
+                    >
+                    <input
+                    class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] font-normal leading-[2.15] text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
+                    id="formFileLg"
+                    type="file" 
+                    required/>
+                </div>
+
+                <!--Submit button-->
+                <button
+                    type="submit"
+                    data-te-ripple-init
+                    data-te-ripple-color="bg-crejo"
+                    class="mr-3 inline-block rounded bg-detail-crejo px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-option-3 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-detail-crejo focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                    Enviar
+                </button>
+            </form>
+            <div class="mt-[30px] mx-[30px] absolute bottom-[0] right-[-30px] mb-3">
+                <button
+                id="download-csv"
+                data-te-ripple-init
+                data-te-ripple-color="detail-crejo"
+                class="mr-3 inline-block rounded bg-bg-crejo px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-option-3 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-detail-crejo focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                Baixar Modelo de Arquivo CSV
+                </button>
+        </div><!-- /File Input -->
+        </div>
+    </div><!-- /Grid View -->
+
+    <div id="table-mostruario" class="mx-2 md:container md:mx-auto hidden print:w-screen print:container-none print:my-[-6px] print:mx-0">
+        <div class="flex flex-col mt-6 print:mt-0">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-1 print:hidden">
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-[20%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="referencia" placeholder="Referência" required>
+                <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-[10%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" id="quantidade" placeholder="Qtd">
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-[40%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="descricao" placeholder="Descrição">
+                <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full md:w-[10%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" id="preco" placeholder="Preço" step="0.01">
+                <button id="adicionar" class="w-full md:w-[20%] text-white bg-bg-crejo hover:bg-detail-crejo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Adicionar</button>
+            </div>
+            <div class="flex flex-col items-center justify-center print:hidden">
+                <hr class="w-[50%] my-6 border-[1px] border-neutral-200 dark:border-neutral-700 ">
+                <div class="flex gap-3">
+                    <button id="cancelar" class="w-full md:w-[50%] text-white bg-detail-crejo hover:bg-bg-crejo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancelar</button>
+                    <button id="cancelar" onclick="window.print()" class="w-full md:w-[50%] text-white bg-bg-crejo hover:bg-detail-crejo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Imprimir</button>
+                </div>
+                <div class="flex mt-3">
+                    <form id="FAltDisc">
+                        <input type="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-[100px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none" placeholder="Desconto" step="0.5" max="100" required>
+                        <button class="w-[150px] text-white bg-bg-crejo hover:bg-detail-crejo focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit">Alterar Desconto</button>
+                    </form>
+                </div>
+            </div>
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div class="overflow-hidden">
+                  <table
+                    class="min-w-full border text-center text-sm font-light dark:border-neutral-500">
+                    <thead class="border-b font-medium dark:border-neutral-500">
+                        <tr class="border-b border-dashed">
+                            <th
+                                scope="col"
+                                colspan="2"
+                                rowspan="2"
+                                class="border-r dark:border-neutral-500 bg-bg-crejo">
+                                <div class="flex items-center justify-center">
+                                    <img
+                                        class="w-16 md:w-32 lg:w-48"
+                                        src="https://i.postimg.cc/L4LHtfjf/image-2023-09-08-235524397-removebg-preview.png"
+                                        alt="Crejo Logo"
+                                        loading="lazy" />
+                                </div>
+                            </th>
+                            <th
+                                scope="col"
+                                colspan="4"
+                                class="border-r px-6 py-4 text-md md:text-lg lg:text-xl dark:border-neutral-500">
+                                Crejo Comercio e Representação - (27) 9 9800-8008 [João Batista]
+                            </th>
+                        </tr>
+                        <tr class="border-b">
+                            <th
+                                scope="col"
+                                colspan="4"
+                                class="border-r px-6 py-4 text-lg font-light dark:border-neutral-500">
+                            </th>
+                        </tr>
+                        <tr>
+                        <th
+                            scope="col"
+                            class="border-r px-2 py-4 dark:border-neutral-500">
+                            Item
+                        </th>
+                        <th
+                            scope="col"
+                            class="border-r px-3 py-4 dark:border-neutral-500">
+                            Qtd
+                        </th>
+                        <th 
+                            colspan="2"
+                            scope="col"
+                            class="border-r px-6 py-4 dark:border-neutral-500">
+                            Descrição
+                        </th>
+                        <th
+                            scope="col"
+                            class="border-r px-6 py-4 dark:border-neutral-500">
+                            Preço Unitário
+                        </th>
+                        <th scope="col" class="px-6 py-4 dark:border-neutral-500">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="border-b px-6 py-1 text-right">
+                            <span class="text-md font-medium text-neutral-500 dark:text-neutral-200">Total Bruto</span>
+                            </td>
+                            <td class="border-b px-6 py-1 text-md font-medium text-neutral-500 dark:text-neutral-200">
+                            R$ <span id='bruto'>0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="border-b px-6 py-1 text-right">
+                            <span class="text-md font-medium text-neutral-500 dark:text-neutral-200">Desconto</span>
+                            </td>
+                            <td class="border-b px-6 py-1 text-md font-medium text-neutral-500 dark:text-neutral-200">
+                            <span id="tdiscount"></span>%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="border-b px-6 py-1 text-right">
+                            <span class="text-md font-medium text-neutral-500 dark:text-neutral-200">Quantidade</span>
+                            </td>
+                            <td class="border-b px-6 py-1 text-md font-medium text-neutral-500 dark:text-neutral-200">
+                            <span id="fquant">0</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 text-right">
+                            <span class="text-md sm:text-lg font-medium text-neutral-700 dark:text-neutral-200">Total Líquido</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm md:text-lg font-medium text-neutral-700 dark:text-neutral-200">
+                            R$ <span id="liquido">0</span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

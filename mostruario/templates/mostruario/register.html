@@ -1,0 +1,160 @@
+{% extends 'mostruario/layout.html' %}
+
+{% block title %}Crejo: Registre-se{% endblock %}
+
+{% block body %}
+    <!-- Section: Split Screen -->
+    <section class="">
+    <!-- Grid -->
+    <div class="grid h-screen grid-cols-1 lg:grid-cols-3">
+        <!-- First Column -->
+        <div class="hidden col-span-2 lg:block bg-bg-crejo rounded-r-[3rem]">
+        <!-- Outer wrapper for flexbox -->
+        <div class="flex h-full flex-col items-center justify-center">
+            <!-- Image Logo -->
+            <img src="https://i.postimg.cc/d3VrR8nY/Logotipo-de-Sa-de-e-M-dico-Moderno-Gradiente-Azul-ndigo-1.png" alt="Logo">
+        </div>
+        </div><!-- /First Column -->
+
+        <!-- Second Column -->
+        <div class="bg-bg-crejo lg:bg-tx-crejo">
+        <!-- Outer wrapper for flexbox -->
+        <div class="flex h-full flex-col items-center justify-center">
+            <!--Logo-->
+            <div class="text-center lg:hidden">
+                <img
+                    class="mx-auto w-48"
+                    src="https://i.postimg.cc/d3VrR8nY/Logotipo-de-Sa-de-e-M-dico-Moderno-Gradiente-Azul-ndigo-1.png"
+                    alt="logo" />
+                </div>
+            <!-- Login Form -->
+            <form action="register" method="post">
+                {% csrf_token %}
+                <div class="text-tx-crejo lg:text-bg-crejo w-84">
+                    <p class="mb-4">Registre-se</p>
+                    <!-- Error message if exist -->
+                    {% if message %}
+                        <div
+                        class="mb-3 hidden w-full h-14 items-center rounded-lg bg-warning-100 px-6 py-5 text-base text-warning-800 data-[te-alert-show]:inline-flex"
+                        role="alert"
+                        data-te-alert-init
+                        data-te-alert-show>
+                            <strong class="mr-1">{{ message }}</strong>
+                            <button
+                            type="button"
+                            class="ml-auto box-content rounded-none border-none p-1 text-warning-900 opacity-50 hover:text-warning-900 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                            data-te-alert-dismiss
+                            aria-label="Close">
+                            <span
+                                class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
+                                <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="h-6 w-6">
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                                    clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            </button>
+                        </div>
+                    {% endif %}
+                    <div class="flex gap-4">
+                        <!--Name input-->
+                        <div class="relative mb-4 w-40" data-te-input-wrapper-init>
+                            <input
+                                type="text"
+                                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                id="exampleFormControlInput1"
+                                placeholder="Nome"
+                                name="first-name" 
+                                required/>
+                            <label
+                                for="exampleFormControlInput1"
+                                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-tx-crejo lg:text-bg-crejo transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                >Nome
+                            </label>
+                        </div>
+
+                        <!-- SecondName input-->
+                        <div class="relative mb-4 w-40" data-te-input-wrapper-init>
+                            <input
+                                type="text"
+                                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                id="exampleFormControlInput1"
+                                placeholder="Sobrenome"
+                                name="last-name" 
+                                required/>
+                            <label
+                                for="exampleFormControlInput1"
+                                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-tx-crejo lg:text-bg-crejo transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                >Sobrenome
+                            </label>
+                        </div>
+                    </div>
+
+                    <!--Username input-->
+                    <div class="relative mb-4" data-te-input-wrapper-init>
+                        <input
+                            type="email"
+                            class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                            id="exampleFormControlInput1"
+                            placeholder="Email"
+                            name="email" 
+                            required/>
+                        <label
+                            for="exampleFormControlInput1"
+                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-tx-crejo lg:text-bg-crejo transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                            >Email
+                        </label>
+                    </div>
+
+                    <!--Password input-->
+                    <div class="relative mb-4" data-te-input-wrapper-init>
+                        <input
+                            type="password"
+                            class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                            id="exampleFormControlInput11"
+                            placeholder="Senha" 
+                            name="password"
+                            required/>
+                        <label
+                            for="exampleFormControlInput11"
+                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-tx-crejo lg:text-bg-crejo transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                            >Senha
+                        </label>
+                    </div>
+
+                    <!--Submit button-->
+                    <div class="mb-12 pb-1 pt-1 text-center">
+                        <button
+                            type="submit"
+                            class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                            data-te-ripple-init
+                            data-te-ripple-color="light"
+                            style="
+                            background: #FF1616;
+                            ">
+                            Registrar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!--Register button-->
+            <div class="flex text-tx-crejo lg:text-bg-crejo items-center justify-between pb-6">
+                <p class="mb-0 mr-2">Já possui uma conta?</p>
+                <a
+                    href="{% url 'login' %}"
+                    class="inline-block rounded border-2 border-detail-crejo bg-detail-crejo px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-tx-crejo transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-detail-crejo focus:border-danger-600 focus:text-bg-crejo focus:outline-none focus:ring-0 active:border-danger-700 active:text-bg-crejo dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+                    data-te-ripple-init
+                    data-te-ripple-color="danger">
+                    Entrar
+                </a>
+            </div>
+        </div>            
+        </div><!-- /Second Column -->
+    </div><!-- /Grid -->
+    </section><!-- /Section: Split Screen -->
+{% endblock %}
