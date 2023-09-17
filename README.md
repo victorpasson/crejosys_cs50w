@@ -3,7 +3,7 @@
 This repository contain the entirely code to my final project to the CS50w. My project consist in a WebApplication to create 
 purchases orders based in a CSV price table. In many situations we need digit a request basing in a product catalog, make it using this application is vary easy because we need just give the price table in CSV. The application have been builded with Django, JavaScript, HTML and CSS.
 
-[![Page Final Project](https://i.ibb.co/dt2pcRM/dja-1.webp)](https://crejo.pythonanywhere.com)
+[![Page Final Project](https://i.ibb.co/zFbqZ1M/Dja-1.png)](https://crejo.pythonanywhere.com)
 
 ## Project Page
 
