@@ -215,7 +215,7 @@ function updateTable(reference, quant, price, control) {
 
 function updateLastROw() {
     document.querySelector("#bruto").innerHTML = Math.round((parseFloat(localStorage.getItem(`bruto_${username}`)) < 0.1) ? 0 : parseFloat(localStorage.getItem(`bruto_${username}`)) * 100) / 100;
-    document.querySelector("#fquant").innerHTML = localStorage.getItem(`qnt_${username}}`);
+    document.querySelector("#fquant").innerHTML = localStorage.getItem(`qnt_${username}`);
     document.querySelector("#liquido").innerHTML = Math.round(((parseFloat(localStorage.getItem(`bruto_${username}`)) < 0.1) ? 0 : parseFloat(localStorage.getItem(`bruto_${username}`))) * (1 - (parseFloat(document.querySelector('#tdiscount').innerHTML) / 100)) * 100) / 100;
 }
 
